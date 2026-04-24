@@ -1,21 +1,68 @@
-# 🕵️ Smart Fraud Job Detection System
+# Smart Fraud Job Detection System
 
-A complete ML system to detect fraudulent job postings using a Hybrid Ensemble,
-Collaborative Filtering, Cross-Validation, and Explainable AI.
+A **Machine Learning system** that detects fraudulent job postings using a Hybrid Ensemble model, Collaborative Filtering, Cross-Validation, and Explainable AI.
+
+---
+
+## Overview
+
+Fake job postings are a serious issue in online recruitment platforms.
+This project builds an intelligent system to **identify fraudulent job listings in real-time** and provide **explainable predictions** using modern ML techniques.
+
+---
+
+## Preview
+
+*(Add your screenshot here)*
+
+```md id="img1"
+![App Screenshot](screenshot.png)
+```
+
+---
+
+## Key Features
+
+* 🔹 Hybrid Ensemble Model (Decision Tree + Random Forest + Logistic Regression)
+* 🔹 Collaborative Filtering using SVD
+* 🔹 Stratified 5-Fold Cross Validation
+* 🔹 Explainable AI (Feature importance + keyword insights)
+* 🔹 Interactive Flask Web Application
+* 🔹 Auto-generated performance charts
+
+---
+
+## Results & Insights
+
+* Accuracy: **90.2%**
+* Precision: **32.1%**
+* Recall: **93.1%**
+* F1 Score: **0.478**
+* AUC-ROC: **0.96**
+
+### Key Insight
+
+The dataset is **highly imbalanced (~5% fraudulent jobs)**.
+
+The model is optimized for **high recall**, ensuring most fraudulent jobs are detected —
+which is critical in fraud detection systems.
+
+This leads to lower precision (more false positives), but reduces the risk of missing actual fraud.
 
 ---
 
 ## 📁 Project Structure
-```
+
+```bash id="tree1"
 fraud_detector/
-├── train.py             ← Full ML training pipeline (run once)
-├── app.py               ← Flask web application
-├── requirements.txt     ← Python dependencies
+├── train.py
+├── app.py
+├── requirements.txt
 ├── templates/
-│   └── index.html       ← Frontend UI
+│   └── index.html
 ├── static/
-│   └── charts/          ← Auto-generated visualisation charts
-└── models/              ← Saved models (created by train.py)
+│   └── charts/
+└── models/
     ├── hybrid_model.joblib
     ├── decision_tree.joblib
     ├── random_forest.joblib
@@ -28,71 +75,105 @@ fraud_detector/
 
 ---
 
-## 🚀 Quick Start
+## How It Works
 
-### 1. Install dependencies
-```bash
+### 🔹 Data Processing
+
+* Text converted using **TF-IDF vectorization**
+* Dimensionality reduction using **Truncated SVD**
+
+### 🔹 Model Training
+
+* Decision Tree
+* Random Forest (higher voting weight)
+* Logistic Regression (higher voting weight)
+* Combined using **Soft Voting Ensemble**
+
+### 🔹 Validation
+
+* Stratified 5-Fold Cross Validation ensures reliable performance
+
+### 🔹 Explainable AI
+
+* Feature importance using Random Forest
+* Decision Tree insights
+* Keyword-level explanation for predictions
+
+---
+
+## Quick Start
+
+### 1. Install Dependencies
+
+```bash id="cmd1"
 pip install -r requirements.txt
 ```
 
-### 2. Add your dataset
-Place `fake_job_postings.csv` in the project root folder.
-*(Download from Kaggle: shivamb/real-or-fake-fake-jobposting-prediction)*
+### 2. Add Dataset
 
-If the CSV is not found, the system generates synthetic demo data automatically.
+Place `fake_job_postings.csv` in the root folder.
 
-### 3. Train models (ONE TIME ONLY)
-```bash
+Dataset source: Kaggle – *Real or Fake Job Posting Prediction*
+
+---
+
+### 3. Train the Model (Run Once)
+
+```bash id="cmd2"
 python train.py
 ```
-This will:
-- Preprocess and vectorize the data (TF-IDF)
-- Compute collaborative filtering features (SVD)
-- Train 3 models: Decision Tree, Random Forest, Logistic Regression
-- Build the Hybrid Voting Ensemble
-- Run 5-Fold Stratified Cross-Validation on all models
-- Generate Explainable AI feature importances
-- Save all models + metrics to `models/`
-- Generate 6 charts to `static/charts/`
 
-### 4. Run the web app
-```bash
+✔ Trains models
+✔ Saves them in `/models`
+✔ Generates charts
+
+---
+
+### 4. Run the Web App
+
+```bash id="cmd3"
 python app.py
 ```
-Open: http://localhost:5000
+
+🌐 Open: http://localhost:5000
 
 ---
 
-## 🧠 ML Features
+## Web Application Features
 
-### Hybrid Ensemble Model
-- **Decision Tree** (max_depth=15, balanced classes)
-- **Random Forest** (150 trees, balanced classes) — 2× voting weight
-- **Logistic Regression** (L2, balanced classes) — 2× voting weight
-- Combined via **Soft Voting** for probability-averaged predictions
-
-### Collaborative Filtering
-- TF-IDF matrix decomposed via **Truncated SVD** (50 components)
-- Captures latent semantic similarity across job postings
-- CF features appended to the main feature matrix
-
-### Cross-Validation
-- **Stratified 5-Fold CV** preserves class distribution per fold
-- Reported for all 4 models: mean F1 ± std
-
-### Explainable AI (XAI)
-- Global: RandomForest feature importances (top 15 text features)
-- Global: Decision Tree top contributing features
-- Per-prediction: TF-IDF weight × RF importance → key words
-
-### No Re-training Needed
-Models are saved as `.joblib` files. The app loads them at startup.
-Only run `train.py` again if you change the dataset or model config.
+* **Predict** → Analyze job postings instantly
+* **Dashboard** → View model performance
+* **Charts** → Visual insights
+* **About** → System architecture
 
 ---
 
-## 🌐 Web Interface
-- **Predict tab** — Analyse any job posting in real-time
-- **Dashboard tab** — Model metrics (Accuracy, Precision, Recall, F1, AUC, CV)
-- **Charts tab** — All 6 visualisation charts
-- **About tab** — System architecture documentation
+## Model Storage
+
+All trained models are saved as `.joblib` files.
+No retraining required unless dataset changes.
+
+---
+
+## Tech Stack
+
+* Python
+* Scikit-learn
+* Flask
+* Pandas / NumPy
+* Matplotlib
+
+---
+
+## Future Improvements
+
+* Deploy on cloud (AWS / Render)
+* Improve precision using threshold tuning / SMOTE
+* Enhance UI/UX
+* Integrate deep learning models
+
+---
+
+## 👩‍💻 Author
+
+**Riya Jayanti**
