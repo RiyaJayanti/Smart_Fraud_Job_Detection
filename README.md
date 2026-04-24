@@ -11,24 +11,14 @@ This project builds an intelligent system to **identify fraudulent job listings 
 
 ---
 
-## Preview
-
-*(Add your screenshot here)*
-
-```md id="img1"
-![App Screenshot](screenshot.png)
-```
-
----
-
 ## Key Features
 
-* 🔹 Hybrid Ensemble Model (Decision Tree + Random Forest + Logistic Regression)
-* 🔹 Collaborative Filtering using SVD
-* 🔹 Stratified 5-Fold Cross Validation
-* 🔹 Explainable AI (Feature importance + keyword insights)
-* 🔹 Interactive Flask Web Application
-* 🔹 Auto-generated performance charts
+* Hybrid Ensemble Model (Decision Tree + Random Forest + Logistic Regression)
+* Collaborative Filtering using SVD
+* Stratified 5-Fold Cross Validation
+* Explainable AI (Feature importance + keyword insights)
+* Interactive Flask Web Application
+* Auto-generated performance charts
 
 ---
 
